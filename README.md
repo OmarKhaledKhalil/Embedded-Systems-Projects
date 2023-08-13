@@ -7,3 +7,5 @@
                                     4-Communication Protocols.
 
 -Each Project Contains its own Implementation Code in the Application Layer, Drivers of the Hardware Abstraction Layer of each Hardware Component used, and the Micro-controller Drivers of the MCAL Layer.
+
+-These Projects Depend on ATmega32 (AVR) Micro-Controller Drivers I have implemented in "ATMEGA-32-AVR---Micro-Controller-Driver" Repository.
