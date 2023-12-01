@@ -12,7 +12,7 @@
 #include <util/delay.h>
 
 static u16 percentage_value;
-static u8 lcd_cursor=0;
+static u8 lcd_cursor=NULL;
 
 void Equaliser_init(void)
 {
