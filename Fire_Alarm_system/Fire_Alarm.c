@@ -14,10 +14,10 @@
 
 #include "Fire_Alarm_System.h"
 
-static u16 temp_value=0;
-static u16 smoke_value=0;
-static u16 password=0;
-static u8 count_password=0;
+static u16 temp_value=NULL;
+static u16 smoke_value=NULL;
+static u16 password=NULL;
+static u8 count_password=NULL;
 
 static Flag_Status flag_fine=OFF;
 static Flag_Status flag_heat=OFF;
@@ -164,8 +164,8 @@ void Fire_Alarm_Emergency(void)
 				flag_maintenance=OFF;
 				flag_fire=OFF;
 				flag_reset=OFF;
-				password=0;
-				count_password=0;
+				password=NULL;
+				count_password=NULL;
 				MOTOR_Stop(M1);
 				DIO_WritePin(FIRE_INDICATION_LED,LOW);
 			}
@@ -180,8 +180,8 @@ void Fire_Alarm_Emergency(void)
 				LCD_Clear();
 				LCD_WriteString("Pass= ");
 				flag_reset=OFF;
-				password=0;
-				count_password=0;
+				password=NULL;
+				count_password=NULL;
 			}
 		}
 		
