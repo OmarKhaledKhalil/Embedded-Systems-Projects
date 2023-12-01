@@ -85,7 +85,7 @@ void Fire_Alarm_Normal(void)
 			
 			LCD_WriteString("   ");
 			LCD_SetCursor(0,0);
-			LCD_WriteNumber(temp_value/10);
+			LCD_WriteNumber(temp_value/10);  // to get Reading in C
 			LCD_WriteString(" C");
 			LCD_WriteString("  Fine");
 			DIO_WritePin(HEAT_INDICATION_LED,LOW);
@@ -111,7 +111,7 @@ void Fire_Alarm_Normal(void)
 			
 			LCD_WriteString("   ");
 			LCD_SetCursor(0,0);
-			LCD_WriteNumber(temp_value/10); 
+			LCD_WriteNumber(temp_value/10);  // to get Reading in C
 			LCD_WriteString(" C");
 			LCD_WriteString("  fire");
 			DIO_WritePin(FIRE_INDICATION_LED,HIGH);
