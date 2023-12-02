@@ -220,12 +220,13 @@ void Docklight_Messages_Runnable(void)
 
 static u8  string_to_integer(u8*str,u16*n) //Helper Static Function To Evaluate The Characters Numeric Values to Integers.
 {
-	u8 flag=0,i=0;
+	Flag_Status_Type flag = NULL ; 
+	u8 i    = NULL ;
 
 	if (str[0]=='-')
 	{
-		flag=1;
-		i=1;
+		flag = ON ;
+		i    = 1 ;
 	}
 	for(; str[i]; i++)
 	{
