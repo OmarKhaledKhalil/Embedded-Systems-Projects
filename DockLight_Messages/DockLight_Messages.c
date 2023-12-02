@@ -28,7 +28,7 @@ u8*lcd="lcd";
 
 void recieve_data_inISR(void)
 {
-	if( flag1 == ON )
+	if( flag1 == ON ) // I Used Global Flag As Semaphore in tasks Synchorinization , Because the system in non-primitive.
 	{
 			static u8 j = NULL;
 			u8 data= UART_ReceiveNoBlock();
@@ -61,8 +61,8 @@ void Docklight_Messages_Init(void)
 
 void Docklight_Messages_Seperate(void)
 {
-	if(flag1==0)
-	{
+	if( flag1 == OFF ) // I Used Global Flag As Semaphore in tasks Synchorinization , Because the system in non-primitive.
+ 	{
 		u8 i;
 		u8 j=NULL,z=NULL;
 		for( i=0 ; data_rec[i] ; i++ )
@@ -93,7 +93,7 @@ void Docklight_Messages_Seperate(void)
 
 void Docklight_Messages_Runnable(void)
 {
-	if( flag2 == ON )
+	if( flag2 == ON ) // I Used Global Flag As Semaphore in tasks Synchorinization , Because the system in non-primitive.
 	{
 		Flag_Status_Type flag_servo=  ON;
 		Flag_Status_Type flag_lcd  =  ON;
@@ -218,7 +218,7 @@ void Docklight_Messages_Runnable(void)
 }
 
 
-static u8  string_to_integer(u8*str,u16*n) 
+static u8  string_to_integer(u8*str,u16*n) //Helper Static Function To Evaluate The Characters Numeric Values to Integers.
 {
 	u8 flag=0,i=0;
 
