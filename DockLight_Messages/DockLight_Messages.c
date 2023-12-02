@@ -14,10 +14,10 @@
 static u8 data_rec[20]={0};
 static u8 data_str[10]={0};
 static u8 data_num[10]={0};
-static volatile u8 flag1 =1;
-static u8 flag2=0;
+static volatile Flag_Status_Type flag1 = ON  ;
+static          Flag_Status_Type flag2 = OFF ;
 
-static u16 num=0;
+static u16 num = NULL ;
 
 u8*servo="servo";
 u8*ledon="ledon";
@@ -28,22 +28,22 @@ u8*lcd="lcd";
 
 void recieve_data_inISR(void)
 {
-	if(flag1==1)
+	if( flag1 == ON )
 	{
-			static u8 j=0;
+			static u8 j = NULL;
 			u8 data= UART_ReceiveNoBlock();
 			if(data!=' ')
 			{
 				if(data=='#')
 				{
-					data_rec[j]=0;
-					j=0;
-					flag1=0;
+					data_rec[j]= NULL ;
+					j = NULL  ;
+					flag1 = OFF ;
 				}
 				else
 				{
-					data_rec[j]=data;
-					j++;
+					data_rec[j] = data ;
+					j++ ;
 				}
 			}
 	}
@@ -64,8 +64,8 @@ void Docklight_Messages_Seperate(void)
 	if(flag1==0)
 	{
 		u8 i;
-		u8 j=0,z=0;
-		for(i=0;data_rec[i];i++)
+		u8 j=NULL,z=NULL;
+		for( i=0 ; data_rec[i] ; i++ )
 		{
 			if(data_rec[i]>='0'&&data_rec[i]<='9')
 			{
@@ -78,13 +78,13 @@ void Docklight_Messages_Seperate(void)
 				z++;
 			}
 		}
-		data_num[j]=0;
-		data_str[z]=0;
+		data_num[j]=NULL;
+		data_str[z]=NULL;
 		string_to_integer(data_num,&num);
 		
 	
-		flag2=1;
-		flag1=1;
+		flag2 = ON ;
+		flag1 = ON ;
 	}
 	
 		
@@ -93,12 +93,12 @@ void Docklight_Messages_Seperate(void)
 
 void Docklight_Messages_Runnable(void)
 {
-	if(flag2==1)
+	if( flag2 == ON )
 	{
-		u8 flag_servo=1;
-		u8 flag_lcd=1;
-		u8 flag_ledon=1;
-		u8 flag_ledoff=1;
+		Flag_Status_Type flag_servo=  ON;
+		Flag_Status_Type flag_lcd  =  ON;
+		Flag_Status_Type flag_ledon=  ON;
+		Flag_Status_Type flag_ledoff= ON;
 		
 		u8 i;
 	
@@ -107,23 +107,23 @@ void Docklight_Messages_Runnable(void)
 		{
 			if(data_str[i]!=servo[i])
 			{
-				flag_servo=0;
+				flag_servo = OFF;
 			}
 			if(data_str[i]!=lcd[i])
 			{
-				flag_lcd=0;
+				flag_lcd   = OFF;
 			}
 			if(data_str[i]!=ledon[i])
 			{
-				flag_ledon=0;
+				flag_ledon = OFF;
 			}
 			if(data_str[i]!=ledoff[i])
 			{
-				flag_ledoff=0;
+				flag_ledoff = OFF;
 			}
 			
 		}
-		if(flag_servo==1)
+		if ( flag_servo == ON )
 		{
 			Servo_Motor_Direction(SERVO_MOTOR_1,num);
 			LCD_SetCursor(1,7);
@@ -132,14 +132,14 @@ void Docklight_Messages_Runnable(void)
 			LCD_WriteString("Servo");
 			LCD_WriteNumber(num);
 		}
-		if(flag_lcd==1)
+		if( flag_lcd == ON )
 		{
 			LCD_SetCursor(0,4);
 			LCD_WriteString("                      ");
 			LCD_SetCursor(0,4);
 			LCD_WriteNumber(num);
 		}
-		if(flag_ledon==1)
+		if( flag_ledon == ON )
 		{
 			switch(num)
 			{
@@ -174,7 +174,7 @@ void Docklight_Messages_Runnable(void)
 				
 			}
 		}
-		if(flag_ledoff==1)
+		if( flag_ledoff == ON )
 		{
 			switch(num)
 			{
@@ -210,8 +210,8 @@ void Docklight_Messages_Runnable(void)
 			}
 		}
 		
-		num=0;
-		flag2=0;
+		num   = NULL ;
+		flag2 = OFF  ;
 		
 	}
 	
