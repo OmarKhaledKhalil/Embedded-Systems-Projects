@@ -6,6 +6,13 @@
 #define LED3_PIN PINC2
 #define LED4_PIN PINC3
 
+typedef enum 
+{
+OFF = 0 ;
+ON  = 1 ;
+}Flag_Status_Type;
+
+
 void Docklight_Messages_Seperate(void);
 void Docklight_Messages_Runnable(void);
 u8  string_to_integer(u8*str,u16*n);
