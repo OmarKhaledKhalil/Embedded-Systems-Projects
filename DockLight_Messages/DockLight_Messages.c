@@ -19,10 +19,12 @@ static          Flag_Status_Type flag2 = OFF ;
 
 static u16 num = NULL ;
 
-u8*servo="servo";
-u8*ledon="ledon";
-u8*ledoff="ledoff";
-u8*lcd="lcd";
+
+//These are  Constant Read Only Strings , Helped me to Compare With the UART Received Strings and Choose the Operation to be done.
+u8 * servo  =  "servo" ;
+u8 * ledon  =  "ledon" ;
+u8 * ledoff =  "ledoff";
+u8 * lcd    =  "lcd"   ;
 
 
 
